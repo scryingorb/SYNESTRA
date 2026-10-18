@@ -1,23 +1,40 @@
 # SYNESTRA
 
+Windows MP3 player with audio-reactive Classic, Pearl, Spectrum, and MilkDrop visuals, built with Electron and WebGL.
+
+## Overview
+
 A standalone Windows MP3 player focused on classic music-visualizer artwork. Choose **Classic - Lightflow** for flowing luminous trails, soft color fields and drifting sparks that respond to your music. Pearl, Spectrum and MilkDrop remain available. Existing saved modes are respected; new installations start in Classic.
 
-## UI Preview
+## Features
 
-**Source-generated UI preview — not an actual application screenshot.** The default Classic / Lightflow interface with an empty library, reconstructed from the UI source, existing styles, fonts, icons and logo. The isolated artwork renderer draws one quiet frame; the application was not launched.
+- Import local MP3 files into a persistent library without moving or uploading them.
+- Control playback, seeking, volume, shuffle, and repeat.
+- Switch between Classic, Pearl, Spectrum, and curated MilkDrop visuals.
+- Tune visual sensitivity, palette, motion, quality, and resolution limits.
+- View fullscreen visuals and rendering diagnostics.
+- Fall back to measured Canvas waveform rendering when GPU rendering fails.
 
-![SYNESTRA source-generated UI preview](docs/screenshots/main-interface.png)
+## Screenshots
 
-## Windows release
+![SYNESTRA Classic visualizer in the desktop player](docs/classic/frame-2.png)
+
+Existing application capture; see [capture context and validation](docs/classic/VALIDATION.md).
+
+## Technologies
+
+TypeScript, React, Electron, Vite, Web Audio, Three.js, WebGL, and Butterchurn.
+
+## Getting Started
 
 Download [SYNESTRA 1.0.1 installer for Windows x64](https://github.com/scryingorb/SYNESTRA/releases/tag/v1.0.1), run setup, then open SYNESTRA from its Start menu or desktop shortcut. No Node.js, npm or developer tools are needed. See [installation, usage, uninstall and known limitations](docs/releases/1.0.1.md). This build is unsigned; clean-machine testing remains pending.
 
-## Development setup
+### Build or run from source
 
 Use Node.js 24 and npm on Windows x64:
 
 ```powershell
-Set-Location 'C:\Users\Admin\Desktop\Coding Projects\Synestra'
+# Run from the repository root.
 npm.cmd ci
 npm.cmd run dev
 ```
@@ -33,7 +50,8 @@ npm.cmd start
 
 If your shell explicitly sets ELECTRON_RUN_AS_NODE, remove it before starting Electron: `Remove-Item Env:\ELECTRON_RUN_AS_NODE -ErrorAction SilentlyContinue`. The development launcher already clears it. The current installer is release/1.0.1/SYNESTRA-Setup-1.0.1-x64.exe; the 1.0.0 ZIP remains a historical release.
 
-## Listen
+## Usage
+
 **Import music** opens Windows' native multi-file picker. Cancel leaves the collection unchanged; duplicate paths are ignored. Click a queue item to play. Importing and relaunching never start playback.
 
 The preserved transport supports play/pause, previous/next, elapsed/duration, seeking, volume, shuffle and repeat off/all/one. Previous restarts after three seconds, otherwise selects the previous track. Manual Next advances even with repeat-one. Shuffle visits a permutation of the queue; repeat-all wraps it. Errors stop on the affected file; select a valid track to recover.
@@ -73,6 +91,7 @@ GPU initialization/shader/render/context-loss failures switch to measured Canvas
 See [MilkDrop refinement and validation](docs/MILKDROP_REFINEMENT.md) for the collection, attribution, measured results and viewing checklist.
 
 ## Analysis contract and tuning
+
 The player still owns one persistent HTMLAudioElement and one graph:
 
 **media element source → analyser → volume gain → destination**
@@ -167,3 +186,7 @@ Historical records: [Phase 4 validation and manual checklist](docs/PHASE4_VALIDA
 All ten current presets rendered genuine 3840 x 2160 buffers on the reported Radeon RX 6800 XT. Short 90-frame samples measured approximately 16.7 ms median / 16.8 ms p95 scheduling intervals, not GPU timings or sustained physical 4K/60 FPS. Long listening sessions, actual 4K displays, other GPUs and mixed-DPI monitors remain manual checks. Existing Vite bundle-size and lucide directive warnings remain. The historical Phase 4 audit reported zero production and eight moderate tooling advisories; an audit was not rerun for this dependency-unchanged refinement.
 
 The old phase roadmap is historical and is not being resumed. The stopped Musical Intelligence implementation remains preserved. Named playlist management is absent from the baseline; the existing persistent library and queue are preserved.
+
+## Project Status
+
+Released: Windows x64 version 1.0.1. Clean-machine testing and broader GPU/display validation remain pending.
