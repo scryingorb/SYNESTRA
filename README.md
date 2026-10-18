@@ -15,6 +15,12 @@ A standalone Windows MP3 player focused on classic music-visualizer artwork. Cho
 - View fullscreen visuals and rendering diagnostics.
 - Fall back to measured Canvas waveform rendering when GPU rendering fails.
 
+## UI Preview
+
+**Source-generated UI preview — not an actual application screenshot.** The default Classic / Lightflow interface with an empty library, reconstructed from the UI source, existing styles, fonts, icons and logo. The isolated artwork renderer draws one quiet frame; the application was not launched.
+
+![SYNESTRA source-generated UI preview](docs/screenshots/main-interface.png)
+
 ## Screenshots
 
 ![SYNESTRA Classic visualizer in the desktop player](docs/classic/frame-2.png)
